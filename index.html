@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>GOLD MASTER AI</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#0b1220;--panel:#121d30;--panel2:#18263c;--line:#263650;--text:#edf3fb;--muted:#9aabc2;--gold:#f3bd52;--green:#22c58b;--red:#ff6878;--blue:#76a9ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#1a2a43 0,#0b1220 42%);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:22px max(18px,calc((100vw - 1180px)/2));border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px;background:#0b1220e8;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#f8d887,#b7791f);display:grid;place-items:center;color:#111827;font-weight:900;font-size:19px}.brand h1{font-size:18px;margin:0;letter-spacing:.08em}.brand small{color:var(--muted)}
+.pill{font-size:11px;color:#f9d98f;border:1px solid #765b2c;padding:5px 9px;border-radius:99px;white-space:nowrap}
+main{max-width:1180px;margin:auto;padding:24px 18px 50px}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:22px}.hero h2{font-size:clamp(25px,4vw,36px);margin:0 0 6px}.hero p{color:var(--muted);margin:0;max-width:700px}
+.tabs{display:flex;gap:8px;margin:18px 0}.tab,button{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:650}.tab.active{background:var(--gold);color:#171717;border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:linear-gradient(180deg,#152238,#111b2d);border:1px solid var(--line);border-radius:16px;padding:17px;min-width:0}.span12{grid-column:span 12}.span8{grid-column:span 8}.span6{grid-column:span 6}.span4{grid-column:span 4}
+.card h3{font-size:16px;margin:0 0 12px}.muted{color:var(--muted);font-size:13px}.fieldgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;color:var(--muted)}input,select{width:100%;background:#0c1627;color:var(--text);border:1px solid #30425f;border-radius:9px;padding:11px;font:inherit;min-width:0}input[type=file]{padding:9px}input:focus,select:focus{outline:2px solid #537fbe}
+.uploads{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.upload{border:1px dashed #435979;border-radius:12px;padding:12px;background:#0c1627}.upload strong{display:block;margin-bottom:7px}.preview{width:100%;max-height:180px;object-fit:contain;margin-top:8px;border-radius:8px;display:none;background:#050a12}
+button.primary{background:var(--gold);color:#171717;border-color:var(--gold)}button.secondary{background:#172840}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.result{border-radius:13px;padding:16px;background:#0c1627;border:1px solid var(--line);margin-top:14px}.result h4{font-size:22px;margin:0 0 4px}.buy{color:var(--green)}.sell{color:var(--red)}.wait{color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.stat{background:#17263b;border-radius:10px;padding:12px}.stat small{display:block;color:var(--muted)}.stat b{font-size:19px}
+#tvchart{height:520px;width:100%;border-radius:10px;overflow:hidden;background:#0c1627}
+.hidden{display:none!important}.notice{border-left:3px solid var(--gold);padding:10px 12px;background:#30271955;color:#e8d6b2;border-radius:7px;font-size:13px;margin-top:12px}
+footer{color:var(--muted);font-size:12px;margin-top:22px;text-align:center}
+@media(max-width:760px){.span8,.span6,.span4{grid-column:span 12}.hero{display:block}.pill{display:inline-block;margin-top:12px}.uploads{grid-template-columns:1fr}.fieldgrid{grid-template-columns:1fr}#tvchart{height:430px}header{padding:14px 16px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">GM</div><div><h1>GOLD MASTER AI</h1><small>ICT • SMC • XAUUSD</small></div></div><span class="pill">MVP · PAPER ANALYSIS</span></header>
+<main>
+<section class="hero"><div><h2>Your Gold Trading Workbench</h2><p>Multi-timeframe chart workspace, manual ICT/SMC checklist and position-risk calculator. This prototype does not generate verified live signals or execute trades.</p></div><span class="pill">4H → 1H → 15M</span></section>
+<div class="tabs"><button class="tab active" data-tab="analysis">Screenshot Analysis</button><button class="tab" data-tab="live">Live Chart</button></div>
+<section id="analysis">
+<div class="grid">
+<div class="card span12"><h3>① Upload your TradingView screenshots</h3><p class="muted">Upload one clear screenshot for each timeframe. Images are previewed in this browser; they are not sent to a server.</p>
+<div class="uploads">
+<div class="upload"><strong>4H · Market bias</strong><input type="file" accept="image/*" id="img4"><img class="preview" id="prev4" alt="4H chart preview"></div>
+<div class="upload"><strong>1H · Liquidity & structure</strong><input type="file" accept="image/*" id="img1"><img class="preview" id="prev1" alt="1H chart preview"></div>
+<div class="upload"><strong>15M · Entry confirmation</strong><input type="file" accept="image/*" id="img15"><img class="preview" id="prev15" alt="15M chart preview"></div>
+</div></div>
+<div class="card span8"><h3>② ICT + SMC confirmation checklist</h3><p class="muted">Review the screenshots and select only what you can actually confirm. The app does not visually detect these concepts yet.</p>
+<div class="fieldgrid">
+<div class="field"><label>4H market bias</label><select id="bias"><option value="neutral">Neutral / unclear</option><option value="bull">Bullish</option><option value="bear">Bearish</option></select></div>
+<div class="field"><label>1H liquidity sweep</label><select id="sweep"><option value="none">None / unclear</option><option value="ssl">Sell-side liquidity (SSL)</option><option value="bsl">Buy-side liquidity (BSL)</option></select></div>
+<div class="field"><label>1H structure shift</label><select id="structure"><option value="none">No confirmation</option><option value="bull">Bullish BOS / CHoCH</option><option value="bear">Bearish BOS / CHoCH</option></select></div>
+<div class="field"><label>15M entry confirmation</label><select id="entryConfirm"><option value="none">No confirmation</option><option value="bull">Bullish displacement + FVG retest</option><option value="bear">Bearish displacement + FVG retest</option></select></div>
+</div>
+<div class="notice">A liquidity sweep alone is not an entry signal. Wait for structure shift and a confirmed 15M setup.</div>
+</div>
+<div class="card span4"><h3>③ Risk settings</h3><div class="fieldgrid">
+<div class="field"><label>Account capital (₹)</label><input id="capital" type="number" value="10000" min="1"></div>
+<div class="field"><label>Risk per trade (%)</label><input id="riskPct" type="number" value="0.5" min="0.1" max="2" step="0.1"></div>
+<div class="field"><label>Entry price</label><input id="entry" type="number" step="any" placeholder="e.g. 2350.00"></div>
+<div class="field"><label>Stop loss price</label><input id="sl" type="number" step="any" placeholder="e.g. 2348.00"></div>
+<div class="field"><label>Take profit price</label><input id="tp" type="number" step="any" placeholder="e.g. 2354.00"></div>
+<div class="field"><label>Estimated ₹ value per $1 price move for your chosen lot</label><input id="rupeePerDollar" type="number" step="any" placeholder="Broker contract-specific"></div>
+</div><p class="muted">Do not guess the contract value. Check your broker's XAUUSD contract specification, lot size and currency conversion.</p></div>
+<div class="card span12"><h3>④ Analysis result</h3><p class="muted">This is a rule-based checklist result, not an AI prediction. Missing or conflicting confirmations return NO TRADE.</p><button class="primary" id="analyze">Analyze setup</button> <button class="secondary" id="reset">Reset checklist</button><div id="result" class="result hidden" aria-live="polite"></div></div>
+</div>
+</section>
+<section id="live" class="hidden"><div class="card"><h3>Live XAUUSD chart view</h3><p class="muted">Embedded TradingView chart widget. Availability, symbol feed and quotes depend on TradingView and its data providers. It is a chart view, not a broker execution connection.</p><div id="tvchart"></div><div class="notice">Use the chart for visual reference. Confirm the exact instrument/feed and prices with your own authorised provider before calculating a trade.</div></div></section>
+<footer>GOLD MASTER AI MVP · Educational tool only · No investment advice · No broker connection · No guaranteed results</footer>
+</main>
+<script>
+document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===btn));
+ document.getElementById('analysis').classList.toggle('hidden',btn.dataset.tab!=='analysis');
+ document.getElementById('live').classList.toggle('hidden',btn.dataset.tab!=='live');
+ if(btn.dataset.tab==='live'&&!document.querySelector('#tvchart iframe')){
+  const s=document.createElement('script');s.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';s.async=true;
+  s.innerHTML=JSON.stringify({autosize:true,symbol:"OANDA:XAUUSD",interval:"15",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",allow_symbol_change:true,calendar:false,support_host:"https://www.tradingview.com"});
+  document.getElementById('tvchart').appendChild(s);
+ }
+}));
+[['img4','prev4'],['img1','prev1'],['img15','prev15']].forEach(([inputId,imgId])=>{
+ document.getElementById(inputId).addEventListener('change',e=>{
+  const f=e.target.files[0],img=document.getElementById(imgId); if(!f)return;
+  if(!f.type.startsWith('image/'))return alert('Please choose an image file.');
+  img.src=URL.createObjectURL(f);img.style.display='block';
+ });
+});
+const $=id=>document.getElementById(id);
+$('analyze').addEventListener('click',()=>{
+ const bias=$('bias').value,sweep=$('sweep').value,structure=$('structure').value,conf=$('entryConfirm').value;
+ let direction='none',reasons=[];
+ if(bias==='bull'&&sweep==='ssl'&&structure==='bull'&&conf==='bull')direction='buy';
+ if(bias==='bear'&&sweep==='bsl'&&structure==='bear'&&conf==='bear')direction='sell';
+ if(direction==='none'){
+  reasons.push('The 4H bias, 1H liquidity/structure and 15M confirmation do not all align.');
+  show('NO TRADE','wait',reasons,null);return;
+ }
+ const entry=Number($('entry').value),sl=Number($('sl').value),tp=Number($('tp').value);
+ const capital=Number($('capital').value),pct=Number($('riskPct').value),value=Number($('rupeePerDollar').value);
+ if(!entry||!sl||!tp||!capital||!pct||!value){show(direction.toUpperCase()+' SETUP – PRICE DETAILS MISSING',direction, ['Checklist aligns. Enter Entry, SL, TP and broker-specific ₹ value per $1 move to calculate risk.'],null);return;}
+ const valid=direction==='buy'?(sl<entry&&tp>entry):(sl>entry&&tp<entry);
+ if(!valid){show('NO TRADE','wait',['Entry, SL and TP are not positioned correctly for this direction.'],null);return;}
+ const riskDistance=Math.abs(entry-sl),rewardDistance=Math.abs(tp-entry),rr=rewardDistance/riskDistance;
+ const riskMoney=capital*pct/100,lossPerLot=riskDistance*value,lot=riskMoney/lossPerLot;
+ const targetMoney=rewardDistance*value*lot;
+ const data={riskMoney,rr,lot,targetMoney,riskDistance,rewardDistance};
+ reasons.push('All selected multi-timeframe checklist conditions align. Verify the chart manually before acting.');
+ reasons.push(rr<2?'Reward-to-risk is below 1:2. Consider NO TRADE.':'Reward-to-risk is at least 1:2.');
+ show(direction.toUpperCase(),direction,reasons,data);
+});
+function show(title,kind,reasons,data){
+ const box=$('result');box.classList.remove('hidden');
+ box.innerHTML=`<h4 class="${kind==='buy'?'buy':kind==='sell'?'sell':'wait'}">${title}</h4><div class="muted">${reasons.join('<br>')}</div>`;
+ if(data)box.innerHTML+=`<div class="stats"><div class="stat"><small>Risk budget</small><b>₹${data.riskMoney.toFixed(2)}</b></div><div class="stat"><small>Reward / Risk</small><b>1:${data.rr.toFixed(2)}</b></div><div class="stat"><small>Illustrative lot size</small><b>${data.lot.toFixed(4)}</b></div></div><p class="muted">Estimated target amount: ₹${data.targetMoney.toFixed(2)}. This calculation depends entirely on the contract value you entered; independently verify broker specifications, fees, spread and slippage. If RR is below 2, do not treat this as an approved setup.</p>`;
+}
+$('reset').addEventListener('click',()=>{['bias','sweep','structure','entryConfirm'].forEach(id=>$(id).selectedIndex=0);['entry','sl','tp','rupeePerDollar'].forEach(id=>$(id).value='');$('result').classList.add('hidden');});
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
